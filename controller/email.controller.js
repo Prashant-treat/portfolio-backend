@@ -12,8 +12,7 @@ export const sendEmail = asyncHandler(async (req, res,next) => {
 
     await resend.emails.send({
         from: `${name} <onboarding@resend.dev>`,
-        to: process.env.EMAIL_USER, // where you want to receive messages
-        reply_to: `${email}`,
+        to: `{process.env.EMAIL_USER}`, // where you want to receive messages
         subject: `${name} -New Contact Message From Portfolio`,
         html: `
           <h3>Contact Details</h3>
