@@ -8,6 +8,7 @@ dotenv.config();
 
 export const sendEmail = asyncHandler(async (req, res,next) => {
     const { name, email, phone, message } = req.body;
+    const resend = new Resend(process.env.RESEND_API_KEY);
     await Resend.emails.send({
         from: `${name}  onboarding@resend.dev`,
         to: process.env.EMAIL_USER, // where you want to receive messages
