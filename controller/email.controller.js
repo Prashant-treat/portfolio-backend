@@ -6,7 +6,7 @@ import asyncHandler from "../utils/asyncHandler.js";
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-    service: "smtp.gmail.com",
+    host: "smtp.gmail.com",
     port: 587,
     secure: false,
     auth: {
@@ -18,8 +18,6 @@ const transporter = nodemailer.createTransport({
 
 export const sendEmail = asyncHandler(async (req, res,next) => {
     const { name, email, phone, message } = req.body;
-    console.log(transporter.options);
-
     await transporter.sendMail({
         from: `"${name}" <${process.env.EMAIL_USER}>`,
         to: process.env.EMAIL_USER, // where you want to receive messages
