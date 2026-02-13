@@ -1,18 +1,16 @@
-import { Resend } from 'resend';
+import { Resend } from "resend";
 import dotenv from "dotenv";
 import asyncHandler from "../utils/asyncHandler.js";
-
 
 dotenv.config();
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-export const sendEmail = asyncHandler(async (req, res,next) => {
+export const sendEmail = asyncHandler(async (req, res, next) => {
     const { name, email, phone, message } = req.body;
-    
 
     await resend.emails.send({
-        from: `${name} <onboarding@resend.dev>`,
-        to: `{process.env.EMAIL_USER}`, // where you want to receive messages
+        from: `Portfolio Contact <onboarding@resend.dev>`,
+        to: process.env.EMAIL_USER, // where you want to receive messages
         subject: `${name} -New Contact Message From Portfolio`,
         html: `
           <h3>Contact Details</h3>
@@ -25,4 +23,3 @@ export const sendEmail = asyncHandler(async (req, res,next) => {
 
     next();
 });
-
