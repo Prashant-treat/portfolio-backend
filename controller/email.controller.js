@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
         user: process.env.EMAIL_USER, // your email
         pass: process.env.EMAIL_PASS, // your email password or app password
     },
-    connectionTimeout: 10000,
+    connectionTimeout: 30000,
 });
 
 export const sendEmail = asyncHandler(async (req, res,next) => {
